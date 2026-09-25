@@ -1,0 +1,73 @@
+# Per-person checks — run on each PERSON CROP, not the whole frame.
+#
+# This is how you catch a weapon without ever detecting the weapon. A machete
+# held by a man is inside the man's box, so the person crop already contains
+# it. No proposal box for the blade is required.
+#
+# Same contrastive format as anomalies.txt: positives vs negatives, softmax
+# between the averaged sides gives P(true).
+
+[weapon_held] severity=high threshold=0.60
++ a person holding a large knife
++ a person holding a machete
++ a person holding a sword
++ a person holding a gun
++ a person holding an iron rod as a weapon
++ a person holding a wooden stick as a weapon
+- a person with empty hands
+- a person holding a mobile phone
+- a person holding a bag
+- a person holding an umbrella
+- a person holding a bottle
+- a person holding a work tool
+- a person holding papers
+
+[aggressive] severity=high threshold=0.65
++ a person raising a hand to strike
++ a person in an aggressive fighting stance
++ a person grabbing another person
+- a person standing calmly
+- a person walking normally
+- a person talking to someone
+
+[on_ground] severity=high threshold=0.65
++ a person lying on the ground
++ a person collapsed
+- a person standing
+- a person sitting on a chair
+- a person walking
+
+[face_hidden] severity=medium threshold=0.60
++ a person whose face is covered with a cloth
++ a person wearing a full face mask
++ a person with a helmet visor covering the face
+- a person with a clearly visible face
+- a person seen from behind
+- a person wearing ordinary glasses
+
+[carrying_large] severity=low threshold=0.65
++ a person carrying a large heavy box
++ a person carrying a big sack
++ a person dragging a large object
+- a person carrying nothing
+- a person carrying a small bag
+
+[climbing_person] severity=high threshold=0.65
++ a person climbing over a wall or gate
++ a person scaling a fence
+- a person standing near a wall
+- a person walking through a gate
+
+[fleeing] severity=medium threshold=0.65
++ a person running away in a hurry
++ a person fleeing the scene
+- a person jogging for exercise
+- a person walking normally
+- a person standing still
+
+[uniform] severity=low threshold=0.60
++ a person in a security guard uniform
++ a person in a police uniform
++ a person in a delivery company uniform
+- a person in ordinary casual clothes
+- a person in formal office clothes

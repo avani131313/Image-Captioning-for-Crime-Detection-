@@ -1,0 +1,223 @@
+# JANA2 attribute vocabulary — for the SECOND pass, after an object is named.
+#
+# Format:
+#   [group_name] applies_to=person,man,woman
+#   full descriptive phrase
+#   ...
+#
+# Two rules that matter:
+#  1. Groups are mutually exclusive, so scores are softmaxed WITHIN a group.
+#     "upper_colour" gives one answer, not five.
+#  2. Phrases, not bare adjectives. CLIP scores "a person wearing a red shirt"
+#     far more reliably than "red". Never put bare "red" in here.
+#
+# If the top score in a group is not clearly ahead of the second, the caption
+# must omit that attribute entirely. Guessing a shirt colour in a crime report
+# is worse than saying nothing.
+
+# ============================== PERSON ==============================
+
+[gender] applies_to=person,man,woman,child,pedestrian,worker,security guard
+a photo of a man
+a photo of a woman
+a photo of a boy
+a photo of a girl
+
+[age] applies_to=person,man,woman,child,pedestrian
+a photo of a young child
+a photo of a teenager
+a photo of a young adult
+a photo of a middle aged person
+a photo of an elderly person
+
+[build] applies_to=person,man,woman
+a photo of a slim person
+a photo of a heavy set person
+a photo of an average build person
+
+[upper_colour] applies_to=person,man,woman,child,pedestrian,worker
+a person wearing a black top
+a person wearing a white top
+a person wearing a grey top
+a person wearing a red top
+a person wearing a blue top
+a person wearing a dark blue top
+a person wearing a light blue top
+a person wearing a green top
+a person wearing a yellow top
+a person wearing an orange top
+a person wearing a brown top
+a person wearing a pink top
+a person wearing a purple top
+a person wearing a beige top
+a person wearing a multicoloured top
+a person wearing a striped top
+a person wearing a checked top
+a person wearing a printed top
+
+[upper_type] applies_to=person,man,woman,child,pedestrian,worker
+a person wearing a t-shirt
+a person wearing a shirt
+a person wearing a kurta
+a person wearing a saree
+a person wearing a salwar kameez
+a person wearing a jacket
+a person wearing a hoodie
+a person wearing a sweater
+a person wearing a coat
+a person wearing a uniform
+a person wearing a high visibility vest
+a person wearing a suit
+a person wearing a sleeveless top
+a bare chested person
+
+[lower_colour] applies_to=person,man,woman,child,pedestrian,worker
+a person wearing black trousers
+a person wearing blue jeans
+a person wearing white trousers
+a person wearing grey trousers
+a person wearing brown trousers
+a person wearing khaki trousers
+a person wearing a dark coloured skirt
+a person wearing a light coloured skirt
+
+[lower_type] applies_to=person,man,woman,child,pedestrian,worker
+a person wearing trousers
+a person wearing jeans
+a person wearing shorts
+a person wearing a skirt
+a person wearing a dress
+a person wearing a lungi
+a person wearing a dhoti
+a person wearing track pants
+
+[headwear] applies_to=person,man,woman,child,pedestrian,worker,security guard
+a person wearing a motorcycle helmet
+a person wearing a hard hat
+a person wearing a cap
+a person wearing a hat
+a person wearing a turban
+a person wearing a headscarf
+a person with a covered face
+a person with an uncovered head
+
+[face_cover] applies_to=person,man,woman,pedestrian
+a person wearing a face mask
+a person with a scarf covering the face
+a person wearing a helmet with visor down
+a person with a fully visible face
+
+[hair] applies_to=person,man,woman,child
+a person with short hair
+a person with long hair
+a person with tied back hair
+a bald person
+
+[eyewear] applies_to=person,man,woman
+a person wearing sunglasses
+a person wearing spectacles
+a person not wearing glasses
+
+[footwear] applies_to=person,man,woman,child,pedestrian
+a person wearing shoes
+a person wearing sandals
+a person wearing slippers
+a person wearing boots
+a barefoot person
+
+[carrying] applies_to=person,man,woman,child,pedestrian
+a person carrying a backpack
+a person carrying a handbag
+a person carrying a shoulder bag
+a person carrying a suitcase
+a person pulling a trolley bag
+a person carrying a cardboard box
+a person carrying a plastic bag
+a person carrying a delivery bag
+a person carrying a sack
+a person holding a mobile phone
+a person holding an umbrella
+a person holding a stick
+a person carrying nothing
+
+[pose] applies_to=person,man,woman,child,pedestrian
+a person standing
+a person walking
+a person running
+a person sitting
+a person squatting
+a person lying on the ground
+a person bending down
+a person climbing
+
+[orientation] applies_to=person,man,woman,child,pedestrian
+a person facing the camera
+a person facing away from the camera
+a person seen from the side
+
+[interaction] applies_to=person,man,woman,pedestrian
+a person riding a motorcycle
+a person riding a bicycle
+a person driving a car
+a person pushing a cart
+a person talking on a phone
+a person opening a door
+a person standing alone
+a person standing in a group
+
+# ============================== VEHICLE ==============================
+
+[vehicle_colour] applies_to=car,truck,bus,van,motorcycle,scooter,auto rickshaw,taxi,suv,lorry,tempo
+a black vehicle
+a white vehicle
+a silver vehicle
+a grey vehicle
+a red vehicle
+a blue vehicle
+a green vehicle
+a yellow vehicle
+a orange vehicle
+a brown vehicle
+
+[vehicle_state] applies_to=car,truck,bus,van,motorcycle,scooter,auto rickshaw,taxi,suv,lorry,tempo
+a parked vehicle
+a moving vehicle
+a damaged vehicle
+an overturned vehicle
+a vehicle with open doors
+
+[vehicle_load] applies_to=truck,lorry,tempo,auto rickshaw,tractor,van
+a loaded vehicle
+an empty vehicle
+a vehicle overloaded with goods
+a vehicle carrying passengers
+
+[plate_visible] applies_to=car,truck,bus,van,motorcycle,scooter,auto rickshaw,taxi,suv,lorry,tempo
+a vehicle with a clearly visible number plate
+a vehicle with an obscured number plate
+a vehicle with no number plate
+
+[rider_count] applies_to=motorcycle,scooter,two wheeler
+a motorcycle with one rider
+a motorcycle with two riders
+a motorcycle with three or more riders
+a motorcycle with no rider
+
+[helmet_compliance] applies_to=motorcycle,scooter,two wheeler
+a rider wearing a helmet
+a rider not wearing a helmet
+
+# ============================== BAG / OBJECT ==============================
+
+[bag_colour] applies_to=bag,backpack,handbag,suitcase,trolley bag,shoulder bag
+a black bag
+a brown bag
+a blue bag
+a red bag
+a grey bag
+a colourful bag
+
+[bag_state] applies_to=bag,backpack,handbag,suitcase,trolley bag
+a bag being carried by a person
+an unattended bag on the ground
+a bag being placed down

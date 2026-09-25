@@ -1,0 +1,765 @@
+# JANA2 naming vocabulary — one name per line, '#' comments ignored.
+# Domain: Indian video surveillance — roads, residential societies, mall
+# entries/exits — plus industrial/PPE scenes.
+#
+# Naming can only output names that appear here.
+#   python -m scripts.build_vocab
+# Merge with LVIS:
+#   python -m scripts.build_vocab --names-from data/lvis/naming_vocab.npz \
+#          --extra assets/vocab.txt --save-txt
+
+# =========================== PEOPLE =============================
+person
+man
+woman
+boy
+girl
+child
+baby
+teenager
+elderly man
+elderly woman
+group of people
+crowd
+queue of people
+pedestrian
+commuter
+security guard
+watchman
+gatekeeper
+traffic police officer
+police officer
+policeman
+policewoman
+home guard
+bouncer
+receptionist
+shopkeeper
+street vendor
+hawker
+fruit seller
+delivery person
+delivery rider
+courier
+postman
+milkman
+newspaper vendor
+garbage collector
+sweeper
+cleaner
+maid
+domestic worker
+driver
+auto driver
+taxi driver
+bus driver
+conductor
+labourer
+construction worker
+factory worker
+technician
+engineer
+supervisor
+mechanic
+student
+school child
+shopper
+customer
+beggar
+face
+hand
+head
+
+# =========================== CLOTHING ===========================
+shirt
+t-shirt
+kurta
+kurti
+saree
+salwar kameez
+dupatta
+lehenga
+sherwani
+blouse
+jacket
+coat
+raincoat
+hoodie
+sweater
+shawl
+vest
+safety vest
+high visibility jacket
+reflective jacket
+uniform
+security uniform
+school uniform
+police uniform
+delivery uniform
+overalls
+apron
+trousers
+jeans
+shorts
+skirt
+dress
+lungi
+dhoti
+turban
+pagri
+cap
+hat
+topi
+helmet
+motorcycle helmet
+hard hat
+safety helmet
+face mask
+scarf
+stole
+sash
+gown
+graduation gown
+glasses
+sunglasses
+goggles
+shoe
+sandal
+slipper
+chappal
+boot
+safety boots
+sneaker
+sock
+glove
+watch
+bangle
+necklace
+earring
+belt
+lanyard
+id card
+badge
+
+# ====================== INDIAN ROAD VEHICLES ====================
+car
+hatchback car
+sedan car
+suv
+taxi
+cab
+motorcycle
+motorbike
+scooter
+scooty
+moped
+two wheeler
+bicycle
+cycle
+auto rickshaw
+autorickshaw
+three wheeler
+cycle rickshaw
+e rickshaw
+electric rickshaw
+tempo
+mini truck
+pickup truck
+truck
+lorry
+tanker truck
+water tanker
+container truck
+trailer truck
+bus
+city bus
+school bus
+minibus
+tourist bus
+van
+delivery van
+ambulance
+fire engine
+police van
+police jeep
+jeep
+tractor
+bullock cart
+handcart
+push cart
+thela
+cart
+trolley
+wheelbarrow
+crane
+excavator
+jcb
+road roller
+garbage truck
+cement mixer
+train
+metro train
+boat
+
+# --- vehicle parts ---
+number plate
+licence plate
+registration plate
+wheel
+tyre
+headlight
+tail light
+indicator light
+windscreen
+side mirror
+bumper
+car door
+car bonnet
+exhaust pipe
+fuel tank
+seat
+
+# ==================== ROAD & TRAFFIC INFRA ======================
+road
+street
+highway
+service road
+lane
+divider
+road divider
+median
+footpath
+sidewalk
+pavement
+kerb
+zebra crossing
+pedestrian crossing
+speed breaker
+speed bump
+pothole
+manhole
+open drain
+drain cover
+traffic signal
+traffic light
+signal pole
+street light
+street lamp
+electric pole
+utility pole
+transformer
+overhead wires
+cctv camera
+security camera
+surveillance camera
+camera pole
+traffic cone
+barricade
+police barricade
+road barrier
+crash barrier
+guard rail
+bollard
+toll booth
+toll gate
+flyover
+bridge
+underpass
+subway
+tunnel
+roundabout
+traffic island
+bus stop
+bus shelter
+auto stand
+taxi stand
+parking lot
+parking area
+parking sign
+no parking sign
+road sign
+signboard
+direction board
+milestone
+hoarding
+billboard
+advertisement board
+banner
+shop front
+shutter
+awning
+tea stall
+food stall
+kiosk
+petrol pump
+fuel station
+tree
+median plant
+dustbin
+garbage bin
+garbage pile
+construction site
+scaffolding
+sand pile
+gravel pile
+brick pile
+
+# ================== SOCIETY / GATED COMMUNITY ===================
+main gate
+society gate
+entrance gate
+exit gate
+boom barrier
+sliding gate
+grill gate
+compound wall
+boundary wall
+fence
+security cabin
+guard post
+guard booth
+gate house
+intercom
+doorbell
+visitor register
+entry register
+nameplate
+letterbox
+society name board
+apartment building
+residential building
+housing society
+tower block
+balcony
+terrace
+rooftop
+water tank
+solar panel
+staircase
+stairs
+lift
+elevator
+lift lobby
+lobby
+corridor
+passage
+basement parking
+covered parking
+open parking
+parking slot
+two wheeler parking
+garage
+ramp
+driveway
+porch
+clubhouse
+playground
+swing
+slide
+garden
+lawn
+park bench
+swimming pool
+gym
+generator
+dg set
+electric meter
+meter box
+pipeline
+water pipe
+overhead tank
+notice board
+dustbin area
+garbage room
+
+# =================== MALL / RETAIL / ENTRY-EXIT =================
+mall entrance
+mall exit
+shopping mall
+glass door
+automatic door
+sliding door
+revolving door
+turnstile
+entry gate
+exit gate turnstile
+metal detector
+door frame metal detector
+handheld metal detector
+baggage scanner
+x ray scanner
+security check counter
+frisking area
+security desk
+reception desk
+help desk
+information counter
+queue barrier
+rope barrier
+stanchion
+escalator
+travelator
+elevator door
+atrium
+food court
+restaurant
+cafe
+coffee shop
+shop
+store
+showroom
+retail counter
+billing counter
+cash counter
+cash register
+atm
+atm machine
+vending machine
+shopping cart
+shopping trolley
+shopping bag
+carry bag
+paper bag
+plastic bag
+price tag
+display shelf
+display window
+mannequin
+signage
+store sign
+directory board
+poster
+standee
+ceiling light
+spotlight
+tiled floor
+glass railing
+handrail
+pillar
+column
+fire exit
+emergency exit
+exit sign
+fire extinguisher
+sprinkler
+smoke detector
+first aid box
+wet floor sign
+
+# ======================= CARRIED ITEMS ==========================
+bag
+handbag
+shoulder bag
+sling bag
+backpack
+school bag
+laptop bag
+suitcase
+trolley bag
+luggage
+duffel bag
+sack
+gunny bag
+box
+carton
+cardboard box
+parcel
+package
+delivery box
+food delivery bag
+tiffin box
+lunch box
+water bottle
+bottle
+umbrella
+mobile phone
+smartphone
+wallet
+purse
+keys
+newspaper
+book
+file
+folder
+documents
+stick
+lathi
+baton
+rope
+bucket
+broom
+mop
+cylinder
+gas cylinder
+canister
+jerry can
+milk packet
+grocery bag
+
+# ========================= ANIMALS ==============================
+dog
+stray dog
+puppy
+cat
+kitten
+cow
+stray cattle
+bull
+buffalo
+goat
+sheep
+pig
+horse
+donkey
+monkey
+bird
+crow
+pigeon
+chicken
+rat
+snake
+
+# ================ INCIDENTS / SAFETY / ANOMALY ==================
+fire
+flame
+smoke
+accident
+collision
+crowd gathering
+fallen person
+person lying down
+injured person
+fight
+weapon
+knife
+gun
+broken glass
+damaged vehicle
+overturned vehicle
+water logging
+flooded road
+fallen tree
+debris
+spill
+blocked exit
+
+# ================= INDUSTRIAL / WAREHOUSE =======================
+machine
+machinery
+industrial machine
+robot arm
+assembly line
+conveyor
+conveyor belt
+control panel
+electrical panel
+switchboard
+circuit breaker
+motor
+generator set
+compressor
+pump
+boiler
+furnace
+welding machine
+grinder
+drill
+lathe
+forklift
+pallet jack
+pallet
+crate
+wooden crate
+storage rack
+shelving
+warehouse
+factory floor
+workshop
+loading bay
+loading dock
+container
+shipping container
+drum
+barrel
+storage tank
+silo
+pipe
+pipes
+valve
+pressure gauge
+meter
+sensor
+cable
+wire
+cable tray
+hose
+fire hose
+ladder
+stepladder
+platform
+catwalk
+railing
+safety barrier
+warning sign
+safety sign
+toolbox
+tool
+hammer
+screwdriver
+wrench
+spanner
+pliers
+chain
+hook
+steel beam
+girder
+sheet metal
+timber
+plank
+cement bag
+
+# ==================== INDOOR / FURNITURE ========================
+chair
+office chair
+plastic chair
+stool
+bench
+table
+desk
+counter
+cabinet
+cupboard
+almirah
+drawer
+shelf
+bookshelf
+sofa
+couch
+bed
+mattress
+pillow
+curtain
+carpet
+rug
+mirror
+clock
+wall clock
+fan
+ceiling fan
+air conditioner
+heater
+lamp
+tube light
+light bulb
+door
+doorway
+window
+window grill
+wall
+ceiling
+floor
+mat
+doormat
+
+# ======================= ELECTRONICS ============================
+computer
+desktop computer
+laptop
+monitor
+screen
+display board
+led screen
+television
+keyboard
+mouse
+printer
+scanner
+server rack
+tablet
+telephone
+landline phone
+walkie talkie
+camera
+microphone
+speaker
+loudspeaker
+projector
+router
+barcode scanner
+charger
+battery
+power outlet
+extension cord
+switch board
+remote control
+
+# ====================== FOOD / KITCHEN ==========================
+cup
+tea cup
+glass
+plate
+bowl
+spoon
+fork
+knife kitchen
+pan
+pot
+kettle
+stove
+gas stove
+microwave
+oven
+refrigerator
+sink
+tap
+bread
+sandwich
+pizza
+burger
+samosa
+snack
+cake
+biscuit
+fruit
+apple
+banana
+orange
+mango
+vegetable
+rice
+noodles
+tea
+coffee
+juice
+
+# ====================== OUTDOOR / NATURE ========================
+sky
+cloud
+sun
+moon
+rain
+puddle
+fog
+dust
+tree
+bush
+plant
+flower
+grass
+leaf
+soil
+mud
+sand
+stone
+rock
+hill
+mountain
+river
+lake
+pond
+sea
+beach
+field
+farm
+snow
+ice

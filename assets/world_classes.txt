@@ -1,0 +1,195 @@
+# Classes handed to YOLO-World as text queries.
+# Purpose: Indian video surveillance — roads, housing societies, mall
+# entries and exits. Crime and incident detection.
+#
+# Every line here must earn its place. Open-vocabulary detection gets WORSE
+# as the list grows, and near-synonyms split the score between them. If a
+# class would never change what an operator does, delete it.
+#
+# Deliberately NOT here: furniture, kitchenware, office supplies, plants,
+# scenery. They are detectable but they are never the reason anyone opens
+# the footage.
+
+# ---------------- people ----------------
+# Role words ("security guard", "thief") are unreliable in a detector —
+# clothing tells you the role, and that is the attribute pass's job.
+person
+man
+woman
+child
+group of people
+crowd of people
+
+# ---------------- weapons and threat objects ----------------
+# Highest value in the whole list. Kept broad because a blade at 40 pixels
+# is a blade, whatever kind it is.
+knife
+large knife
+machete
+sword
+sickle
+axe
+gun
+pistol
+rifle
+wooden stick
+iron rod
+metal pipe
+baseball bat
+hockey stick
+cricket bat
+hammer
+crowbar
+metal chain
+brick
+stone
+glass bottle
+petrol can
+molotov cocktail
+
+# ---------------- two-wheelers and riders ----------------
+motorcycle
+scooter
+bicycle
+person riding a motorcycle
+motorcycle rider without helmet
+motorcycle rider with helmet
+helmet
+three people on a motorcycle
+
+# ---------------- vehicles (Indian road mix) ----------------
+car
+taxi
+suv
+van
+auto rickshaw
+cycle rickshaw
+electric rickshaw
+truck
+lorry
+tempo
+mini truck
+bus
+school bus
+tractor
+ambulance
+police vehicle
+fire engine
+water tanker
+handcart
+street vendor cart
+damaged vehicle
+overturned vehicle
+
+# Car parts. Present so an open boot or door is EVIDENCE about the car
+# (loading, tampering, break-in) — never captioned as objects in their own
+# right. See VEHICLE_PART in postprocess.py.
+car door
+open car boot
+windscreen
+
+# ---------------- identification ----------------
+# "person wearing a face mask" and "person wearing a helmet indoors" were
+# removed: both put a box on a HEAD and then got captioned as a second
+# person standing next to the first. face_hidden in person_checks.txt
+# already answers the same question, on the person crop, without
+# inventing an entity.
+number plate
+vehicle number plate
+face
+covered face
+
+# ---------------- carried items (theft, abandonment, delivery) ----------
+bag
+backpack
+handbag
+shoulder bag
+suitcase
+trolley bag
+plastic bag
+cardboard box
+parcel
+sack
+gas cylinder
+mobile phone
+laptop
+jewellery
+cash
+unattended bag on the ground
+
+# ---------------- access control and premises ----------------
+gate
+main gate
+boom barrier
+sliding gate
+turnstile
+metal detector
+baggage scanner
+security cabin
+guard booth
+intercom panel
+biometric scanner
+door
+glass door
+shutter
+window
+window grill
+compound wall
+fence
+barbed wire
+ladder
+rope
+staircase
+lift door
+parking area
+parked vehicles
+
+# ---------------- surveillance infrastructure ----------------
+cctv camera
+security camera
+street light
+traffic light
+traffic cone
+police barricade
+road barrier
+signboard
+notice board
+
+# ---------------- animals on the road ----------------
+stray dog
+dog
+cat
+cow
+cattle on the road
+buffalo
+goat
+monkey
+
+# ---------------- hazard ----------------
+fire
+flames
+smoke
+broken glass
+water logging on the road
+open manhole
+fallen tree
+debris on the road
+
+# ---------------- retail / mall ----------------
+shopping trolley
+shopping bag
+billing counter
+cash counter
+atm machine
+reception desk
+queue of people
+escalator
+mannequin
+fire extinguisher
+
+# ---------------- work sites (PPE compliance) ----------------
+hard hat
+safety vest
+worker without helmet
+scaffolding
+construction material

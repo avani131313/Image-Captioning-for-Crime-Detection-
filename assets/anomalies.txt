@@ -1,0 +1,193 @@
+# Frame-level yes/no checks.
+#
+#   [name] severity=high threshold=0.70 requires=motorcycle tiles=no
+#     + positive phrase
+#     - negative phrase
+#
+#   requires=        check does not run unless one of these objects was found
+#   requires_people= minimum person count
+#   tiles=no         whole frame only (for global properties like darkness —
+#                    one dark tile in a bright image is a dark jacket)
+#
+# Gating is what stops "no helmet 99%" firing on a studio portrait. If a
+# check can only be true when some object is present, say so here.
+
+# ============================ FIRE / SMOKE ============================
+
+[fire] severity=high threshold=0.72
++ a photograph of a fire burning
++ a photograph of orange flames
++ a building on fire
++ a vehicle on fire
+- a normal scene with no fire
+- an ordinary photograph with no flames
+- a scene with orange or yellow objects but no fire
+- a sunset sky with no fire
+- a person wearing orange clothing
+
+[smoke] severity=high threshold=0.72
++ a photograph filled with thick smoke
++ smoke rising from a fire
++ a room filled with grey smoke
+- a normal clear scene with no smoke
+- a hazy or foggy scene with no smoke
+- an ordinary photograph with clear air
+- a plain grey background
+
+# ============================ VIOLENCE ================================
+
+[fight] severity=high threshold=0.72 requires_people=2
++ two people physically fighting
++ people attacking each other
++ a violent altercation between people
+- people standing and talking calmly
+- people walking normally
+- an ordinary group of people
+- a single person posing for a photograph
+
+[person_down] severity=high threshold=0.72 requires=person
++ a person lying motionless on the ground
++ an injured person on the ground
++ a person collapsed on the floor
+- a person standing upright
+- a person walking
+- a person sitting normally
+- a portrait photograph of a person
+
+[weapon_scene] severity=high threshold=0.68 requires=person
++ a person brandishing a weapon
++ someone threatening another person with a blade
+- people going about their day normally
+- a person holding an ordinary object
+- a portrait photograph of a person
+
+# ============================ INTRUSION ===============================
+
+[climbing] severity=high threshold=0.72 requires=person
++ a person climbing over a wall
++ a person climbing a fence
++ a person climbing a gate
+- a person walking beside a wall
+- a person standing near a fence
+- a person passing through an open gate
+- a portrait photograph of a person
+
+[loitering_group] severity=medium threshold=0.75 requires_people=4
++ a group of people standing together doing nothing
++ several people gathered in one place at night
+- a few people walking past
+- an empty street
+- people queuing normally
+- people working
+
+# ============================ THEFT / SAFETY ===========================
+# Purpose-built for the residential-society and street context: snatching,
+# vehicle break-ins, and an unsupervised child near a road or gate.
+
+[snatching] severity=high threshold=0.72 requires_people=2
++ a person snatching a bag, phone or chain from another person
++ a robbery or mugging in progress on the street
+- people greeting or shaking hands
+- a person handing an object to another person
+- people walking together normally
+
+[vehicle_tampering] severity=medium threshold=0.72 requires=vehicle
++ a person trying to break into a parked vehicle
++ a person forcing open a car door or window
+- a person unlocking and entering their own vehicle normally
+- a person walking past parked vehicles
+- an owner loading items into their vehicle
+
+[unattended_child] severity=medium threshold=0.72 requires=child
++ a small child alone with no adult nearby
++ an unsupervised child near a road or gate
+- a child standing with an adult
+- a child playing with other children under supervision
+
+# ============================ OBJECTS =================================
+
+[unattended_bag] severity=medium threshold=0.72 requires=bag,backpack,suitcase,trolley bag,handbag
++ a bag left alone on the ground with nobody near it
++ an abandoned suitcase on the floor
+- a bag being carried by a person
+- a person standing next to their bag
+- a scene with no bags
+
+[vandalism] severity=medium threshold=0.75
++ a person breaking a window
++ broken glass and damage to property
++ graffiti being sprayed on a wall
+- an undamaged building
+- a clean wall
+- an ordinary street scene
+
+# ============================ CIVIC ====================================
+
+[littering] severity=low threshold=0.72 requires=person
++ a person throwing trash or garbage on the ground
++ a person littering by discarding waste in a public place
++ trash and litter scattered across the street
+- a person putting trash in a dustbin
+- a person walking without littering
+- a clean street with no litter
+- an ordinary street scene
+
+# ============================ TRAFFIC =================================
+# All gated on a vehicle actually being present.
+
+[accident] severity=high threshold=0.65 requires=vehicle
++ a road accident with damaged vehicles
++ an overturned vehicle on the road
++ a collision between two vehicles
++ a crashed car with a crumpled body and broken parts
++ debris and broken glass scattered around a wrecked vehicle
+- vehicles driving normally
+- vehicles parked normally
+- an ordinary road scene
+
+[no_helmet] severity=low threshold=0.70 requires=motorcycle,scooter,bicycle
++ a person riding a motorcycle without a helmet
++ a motorcycle rider with a bare head
+- a person riding a motorcycle wearing a helmet
+- a motorcycle with no rider
+- a scene with no motorcycle
+
+[overloaded_vehicle] severity=low threshold=0.75 requires=vehicle
++ a vehicle dangerously overloaded with goods
++ many people riding on top of a vehicle
+- a normally loaded vehicle
+- an empty vehicle
+
+[wrong_side] severity=low threshold=0.80 requires=vehicle
++ a vehicle driving on the wrong side of the road
+- vehicles driving in the correct lane
+- an ordinary road scene
+
+# ============================ ENVIRONMENT =============================
+
+[flooding] severity=medium threshold=0.72 tiles=no
++ a flooded road covered in water
++ severe water logging on a street
+- a dry road
+- a road with small puddles after rain
+- an indoor scene
+
+[crowd_surge] severity=medium threshold=0.78 requires_people=8
++ a dangerously dense crowd of people pushing
++ a stampede of people
+- a moderate number of people walking
+- an ordinary busy street
+- a small group of people
+
+[darkness] severity=low threshold=0.80 tiles=no
++ a very dark scene where almost nothing is visible
++ a camera view that is almost completely black
+- a normally lit scene
+- a dim but clearly visible scene
+- a brightly lit photograph
+
+[obstructed_camera] severity=medium threshold=0.80 tiles=no
++ a camera lens blocked by an object
++ a completely blurred and obstructed camera view
+- a clear unobstructed camera view
+- a normal photograph

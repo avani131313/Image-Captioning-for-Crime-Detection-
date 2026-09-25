@@ -1,0 +1,57 @@
+# Scene vocabulary — scored against the WHOLE image, never against a crop.
+# Kept short on purpose: a scene label is only useful if it is reliable.
+
+# ---- broad ----
+an indoor scene
+an outdoor scene
+
+# ---- road / traffic ----
+a busy city street
+a quiet residential street
+a highway
+a traffic junction
+a road with heavy traffic
+a parking area
+a petrol station
+# "a road accident scene" was removed: a scene label describes a PLACE, an
+# accident is an EVENT already covered by [accident] in anomalies.txt. With
+# it in the list, every vehicle photo that matched nothing else fell into
+# it — a parked motorcycle was captioned "A road accident scene."
+
+# ---- residential ----
+the entrance gate of a housing society
+a residential building compound
+an apartment corridor
+a lift lobby
+a basement car park
+a staircase
+a children's play area
+
+# ---- retail / public ----
+a shopping mall interior
+a mall entrance
+a shop interior
+a security check area
+a reception area
+an atm kiosk
+a food court
+a railway station platform
+a bus stop
+an airport terminal
+
+# ---- work ----
+a factory floor
+an industrial workshop
+a warehouse interior
+a construction site
+an office interior
+
+# ---- other ----
+a rural road
+an open field
+a park
+a market area
+a narrow alley
+a rooftop
+a night time street scene
+a crowded public place
