@@ -1,7 +1,6 @@
 # JANA2 — object-centric surveillance captioning
 
-Copy of the code as it stood at the end of the session. Server copy of record:
-`/root/interns/avani/git_clones/image-captioning` (bitbucket `research_experiments`).
+An explainable captioning pipeline for surveillance frames. Instead of a black-box language model, JANA2 detects objects, builds structured evidence (attributes, relations, threat and anomaly checks), and composes a deterministic, auditable caption, with a distilled 13.4M-parameter encoder option for lightweight deployment.
 
 ```
 jana2/      the pipeline
@@ -29,7 +28,7 @@ app.py      streamlit UI
 | `evidence.py` | the structured evidence dataclasses |
 | `readout.py` | auditable operator lines + alerts |
 | `compose.py` | the caption — deterministic, no language model |
-| `rpn_head.py` | vendored from the old project; **no longer used** |
+| `rpn_head.py` | vendored from an earlier project; **no longer used** |
 
 ### scripts/
 
@@ -48,71 +47,52 @@ image, including which mechanism produced each check.
 ## Standard workflow
 
 ```bash
-cd /root/interns/avani/git_clones/image-captioning && source venv/bin/activate
+source venv/bin/activate
 
 # caches — needed after ANY edit to assets/*.txt, and after changing encoder
 python -m scripts.build_vocab && python -m scripts.build_scenes && \
 python -m scripts.build_attributes && python -m scripts.build_checks
 
 # baseline (teacher, phrase checks)
-nohup python -u -m streamlit run app.py --server.port 8616 --server.address 0.0.0.0 > teacher.log 2>&1 & disown
+streamlit run app.py
 
 # student + probes
-JANA2_PROBES=1 JANA2_STUDENT=checkpoints_distill/projector_best.pt \
-nohup python -u -m streamlit run app.py --server.port 8617 --server.address 0.0.0.0 > student.log 2>&1 & disown
+JANA2_PROBES=1 JANA2_STUDENT=checkpoints_distill/projector_best.pt streamlit run app.py
 ```
 
-Labelling (needs the vLLM venv and the CUDA compat path):
+Labelling uses Moondream3 served through vLLM, in its own virtualenv:
 
 ```bash
-export LD_LIBRARY_PATH=/usr/local/cuda-13.0/compat:/root/aniket/git_clones/image-captioning/.venv-vllm/lib/python3.10/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH
-export VLLM_USE_FLASHINFER_SAMPLER=0
-/root/aniket/git_clones/image-captioning/.venv-vllm/bin/python scripts/moondream_verify.py \
+python scripts/moondream_verify.py \
   --manifest data/ucf/frames_sample.jsonl --out data/ucf/verified.jsonl
 ```
 
-## Gotchas — the things that cost time
+## Gotchas
 
-**CUDA.** Driver is 550.163.01 / CUDA 12.4. Only cu124 builds work directly.
-A cu130 build reports `cuda: False` until you export
-`LD_LIBRARY_PATH=/usr/local/cuda-13.0/compat:...` — that forward-compat
-library is what makes vLLM and Moondream3 work at all. Not set by default.
-
-**Wrong venv.** `numpy was built with baseline optimizations (X86_V2)` means
-you're in `.venv-1` or another user's environment. Re-activate your own.
+**CUDA versions.** vLLM and Moondream3 need a CUDA 13 build. On a machine
+with an older driver, a cu130 build reports `cuda: False` until the CUDA
+forward-compatibility library is on `LD_LIBRARY_PATH`.
 
 **`.npz` caches are encoder-stamped** and refuse to load against a different
 encoder. Change `clip_model` → rebuild all four.
 
-**Heredocs get mangled** on long pastes — files arrive truncated or empty.
-Anything over ~50 lines, paste in an editor and check `wc -l`.
-
-**VS Code root.** If it's open on `/root/aniket/...`, files land in his repo.
-Happened twice.
-
-**`&` scoping.** `cd x && nohup y &` runs the `cd` inside the subshell — your
-shell stays put and the log isn't where you look for it. Separate them.
-
-**Streamlit loads models lazily.** An empty log doesn't mean failure; hit the
+**Streamlit loads models lazily.** An empty log doesn't mean failure; open the
 page first.
 
-**Never `st.dataframe`/`st.table`** — pyarrow segfaults on this host.
-
-**Ports.** 8616 and 8617. 8601 is taken.
+**`st.dataframe` / `st.table` can segfault** via pyarrow on some hosts; the app
+avoids them.
 
 ## What's not here
 
 - `.npz` caches — rebuild with the build scripts
-- `checkpoints_distill/` and `assets/probes__*.npz` — on the server
-- `data/` — ~160 GB (UCF-Crime, VG, places365, harvested crops)
-- The `.venv`s
+- `checkpoints_distill/` and `assets/probes__*.npz` — trained artifacts, not committed
+- `data/` — ~160 GB (UCF-Crime, Visual Genome, Places365, harvested crops)
+- Virtual environments
 
-## State at handover
+## Current state
 
 | | |
 |---|---|
 | encoder | SigLIP2 93M, or distilled MobileCLIP2-S0 + projector at 13.4M |
 | frame checks | 8 learned probes (AP 0.80–0.95), `weapon_scene` rejected at AP 0.34 |
 | person checks | all 8 still phrase-based — `weapon_held` misfires on children |
-| thresholds | calibrated on 400 real CCTV frames, 2 false alarms / 1000 |
-| open | person-crop probes, recall measurement, attribute floors |
